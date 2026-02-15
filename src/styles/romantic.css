@@ -1,0 +1,271 @@
+/* ================= HOME PAGE ================= */
+body {
+  margin: 0;
+  padding-top: 70px; /* same as navbar height */
+}
+
+
+.home-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #ffc0cb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: cursive, Arial;
+  color: #4b0082;
+  font-style: italic;
+}
+
+.overlay {
+  z-index: 10;
+}
+
+.home-title {
+  font-size: 4rem;
+  color: #ff1493;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px #ffb6c1;
+}
+
+.home-subtitle {
+  font-size: 1.8rem;
+  color: #800080;
+  margin-bottom: 20px;
+}
+
+.home-text {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #8b008b;
+}
+
+.home-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.home-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.8);
+}
+
+
+/* ================= GIFTS PAGE ================= */
+
+.outer-bg {
+  min-height: 100vh;
+  background: linear-gradient(to right, #e78f92, #f3cfd6, #e2a7a2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.main-card {
+  background: #ececec;
+  width: 900px;
+  padding: 60px 80px;
+  border-radius: 35px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.main-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #2a1c25;
+  margin-bottom: 50px;
+}
+
+.gift-row {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  margin-bottom: 50px;
+}
+
+.gift-box {
+  width: 280px;
+  height: 260px;
+  background: #f4eef1;
+  border: 3px solid #ff7aa8;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.gift-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(255, 105, 135, 0.35);
+}
+
+.gift-box h2 {
+  font-size: 22px;
+  color: #7d2d53;
+  margin-bottom: 25px;
+}
+
+.gift-icon {
+  font-size: 75px;
+}
+
+
+/* ================= GIFT BUTTONS ================= */
+
+.gift-buttons {
+  margin: 30px 0;
+  display: flex;
+  gap: 20px;
+}
+
+.gift-btn {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+}
+
+.gift-btn:hover {
+  transform: scale(1.05);
+}
+
+.gift-content {
+  margin-top: 30px;
+}
+
+.letter-image {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ================= POPUP PAGE ================= */
+
+.popup-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #ffc0cb;
+  padding: 20px;
+}
+
+.popup-image {
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+
+/* ================= BACK BUTTON ================= */
+
+.back-btn {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+}
+
+
+/* ================= COMMON ================= */
+
+body {
+  margin: 0;
+  font-family: cursive;
+  background: black;
+}
+/* Background */
+.forever-bg {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ffc0cb, #ffe4e1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card */
+.forever-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+}
+
+/* Title */
+.forever-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #ff1493;
+  font-family: 'Dancing Script', cursive;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* Typing text */
+.typing-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  color: #6a0dad;
+  white-space: pre-wrap;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+/* Floating hearts animation */
+.floating-hearts span {
+  position: absolute;
+  font-size: 24px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.4;
+}
+
+.floating-hearts span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.floating-hearts span:nth-child(2) { left: 30%; animation-delay: 2s; }
+.floating-hearts span:nth-child(3) { left: 60%; animation-delay: 4s; }
+.floating-hearts span:nth-child(4) { left: 80%; animation-delay: 1s; }
+
+@keyframes floatUp {
+  0% {
+    bottom: -50px;
+    transform: translateY(0);
+  }
+  100% {
+    bottom: 110%;
+    transform: translateY(-100vh);
+  }
+}

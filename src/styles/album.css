@@ -1,0 +1,276 @@
+/* ===============================
+   ALBUM HOME (GRID PAGE)
+================================= */
+
+.album-grid-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #ff9a9e 0%,
+    #fad0c4 25%,
+    #fbc2eb 50%,
+    #a18cd1 75%,
+    #fbc2eb 100%
+  );
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.album-title {
+  color: #f1e8ec;
+  font-size: 34px;
+  margin-bottom: 35px;
+  text-shadow: 0 0 20px hotpink;
+}
+
+/* Grid layout */
+.album-grid {
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Album Card */
+.album-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.album-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px hotpink;
+}
+
+/* Album Cover */
+.album-cover {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Overlay title */
+.album-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255, 20, 147, 0.75);
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 16px;
+  transform: translateY(100%);
+  transition: 0.4s ease;
+}
+
+.album-card:hover .album-overlay {
+  transform: translateY(0);
+}
+
+/* ===============================
+   ALBUM PLAYER (SLIDESHOW)
+================================= */
+
+.album-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #2b0a16, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Slideshow layout */
+.slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image / Video */
+.slide-image {
+  width: 90vw;
+  max-width: 800px;
+  height: 75vh;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+  animation: slideFade 0.8s ease;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Navigation buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  background: rgba(255, 105, 180, 0.6);
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.nav-btn:hover {
+  background: hotpink;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 0 20px hotpink;
+}
+
+.left { left: 7%; }
+.right { right: 7%; }
+
+/* Back button */
+/* ===== Full Album Player Background ===== */
+.album-player-page {
+  min-height: 100vh;
+  padding: 80px 20px 40px;
+
+  background: radial-gradient(circle at top,
+      #ffe0f0 0%,
+      #ffc2e2 30%,
+      #d0bfff 60%,
+      #b8c0ff 100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    position: relative; 
+}
+
+/* Glass container */
+.album-player-wrapper {
+  position: relative;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(30px);
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(255, 105, 180, 0.35);
+}
+
+/* ===== Center Back Button ===== */
+.back-btn-center {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: linear-gradient(135deg, #ff6fa5, #ff9ac4);
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+  transition: all 0.3s ease;
+}
+
+.back-btn-center:hover {
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 12px 30px rgba(255, 105, 180, 0.6);
+}
+
+/* Music Button */
+.music-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(45deg, #ff4d6d, #ff758f);
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
+  transition: 0.3s;
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+}
+/* Tablet */
+@media (max-width: 900px) {
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.secret-page {
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.secret-page h1 {
+  font-size: 32px;
+  color: #fff;
+}
+
+.secret-subtitle {
+  color: white;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.secret-page input {
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: none;
+  width: 260px;
+  text-align: center;
+}
+
+.secret-page button {
+  padding: 12px 22px;
+  border-radius: 25px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.secret-hint {
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.8;
+}
