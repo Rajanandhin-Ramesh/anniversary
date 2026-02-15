@@ -6,47 +6,82 @@ export default function AlbumPlayer() {
   const { name } = useParams();
   const navigate = useNavigate();
   const audioRef = useRef(null);
-  const audioSrc = `/music/${name}.mp3`; 
+  const audioSrc = `/music/${name}.mp3`;
 
+  const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // ✅ Load ALL media once (static path required)
+  // ✅ Lazy load ALL media (removed eager)
   const allMedia = import.meta.glob(
-    "../assets/album/**/*.{jpg,jpeg,JPG,mp4}",
-    { eager: true, import: "default" }
+    "../assets/album/**/*.{jpg,jpeg,mp4}",
+    { import: "default" }
   );
 
-  // ✅ Filter only selected album
-  const media = Object.entries(allMedia)
-    .filter(([path]) => path.includes(`/album/${name}/`))
-    .map(([, file]) => file);
+  // ✅ Load only selected album
+  useEffect(() => {
+    const loadMedia = async () => {
+      const entries = Object.entries(allMedia).filter(
+        ([path]) => path.includes(`/album/${name}/`)
+      );
 
-  // Auto slideshow
- useEffect(() => {
-  if (media.length === 0) return;
+      const files = await Promise.all(
+        entries.map(([, loader]) => loader())
+      );
 
-  const interval = setInterval(() => {
-    setCurrentIndex((prev) => {
-      if (prev === media.length - 1) {
-        // Stop slideshow
-        clearInterval(interval);
+      setMedia(files);
+      setCurrentIndex(0);
+    };
 
-        // STOP music when last image is reached
-        if (audioRef.current) {
-          audioRef.current.pause();
+    loadMedia();
+  }, [name]);
+
+  // ✅ Preload first image for fast display
+  useEffect(() => {
+    if (media[0]) {
+      const img = new Image();
+      img.src = media[0];
+    }
+  }, [media]);
+
+  // ✅ Auto slideshow
+  useEffect(() => {
+    if (media.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        if (prev === media.length - 1) {
+          // Stop music on last slide
+          if (audioRef.current) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+          }
+          return prev;
         }
+        return prev + 1;
+      });
+    }, 4000);
 
-        return prev; // stay on last image
+    return () => clearInterval(interval);
+  }, [media.length]);
+
+  // ✅ Try autoplay music (browser safe)
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(() => {
+        setIsPlaying(false);
+      });
+    }
+  }, [media]);
+
+  // ✅ Stop music on page leave
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
       }
-      return prev + 1;
-    });
-  }, 4000);
-
-  // Cleanup on unmount
-  return () => clearInterval(interval);
-}, [media]);
-
+    };
+  }, []);
 
   const next = () =>
     setCurrentIndex((p) => (p + 1) % media.length);
@@ -57,6 +92,8 @@ export default function AlbumPlayer() {
     );
 
   const toggleMusic = () => {
+    if (!audioRef.current) return;
+
     if (audioRef.current.paused) {
       audioRef.current.play();
       setIsPlaying(true);
@@ -69,36 +106,52 @@ export default function AlbumPlayer() {
   return (
     <div className="album-player-page">
       <div className="album-player-wrapper"></div>
+
+      {/* 🎵 Music */}
       <audio
-  ref={audioRef}
-  src={audioSrc}
-  autoPlay
-/>
+        ref={audioRef}
+        src={audioSrc}
+        autoPlay
+        loop
+      />
 
-
-
-      <button className="back-btn-center" onClick={() => navigate("/memories")}>
+      {/* 🔙 Back button */}
+      <button
+        className="back-btn-center"
+        onClick={() => navigate("/memories")}
+      >
         ⬅ Back to Memories
       </button>
 
+      {/* 📸 Slideshow */}
       <div className="slideshow">
-        <button className="nav-btn left" onClick={prev}>❮</button>
+        <button className="nav-btn left" onClick={prev}>
+          ❮
+        </button>
 
         {media[currentIndex]?.includes(".mp4") ? (
-          <video
-            src={media[currentIndex]}
-            className="slide-image"
-            autoPlay
-            loop
-            muted
-          />
-        ) : (
-          <img src={media[currentIndex]} className="slide-image" />
-        )}
+  <video
+    src={media[currentIndex]}
+    className="slide-image"
+    autoPlay
+    loop
+    muted
+  />
+) : (
+  <img
+    src={media[currentIndex]}
+    className="slide-image"
+    loading="lazy"
+  />
+)}
 
-        <button className="nav-btn right" onClick={next}>❯</button>
+
+        <button className="nav-btn right" onClick={next}>
+          ❯
+        </button>
       </div>
 
+      {/* 🎵 Music toggle */}
       <button className="music-btn" onClick={toggleMusic}>
         {isPlaying ? "⏸" : "🎵"}
       </button>

@@ -94,7 +94,42 @@
   justify-content: center;
   align-items: center;
 }
+/* Romantic glow behind image */
+.slideshow::before {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 182, 193, 0.45),
+    transparent
+  );
+  filter: blur(90px);
+  z-index: -1;
+}
+.album-player-page::after {
+  content: "💖 💕 💗 💓 💞";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 22px;
+  opacity: 0.25;
+  animation: floatHearts 18s linear infinite;
+}
 
+@keyframes floatHearts {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+
+/* Image / Video */
 /* Image / Video */
 .slide-image {
   width: 90vw;
@@ -103,8 +138,35 @@
   object-fit: contain;
   border-radius: 20px;
   box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
-  animation: slideFade 0.8s ease;
+
+  animation: romanticFade 4s ease-in-out;
 }
+
+/* Romantic Fade + Zoom */
+@keyframes romanticFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(10px);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+
+  80% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+}
+
 
 @keyframes slideFade {
   from {

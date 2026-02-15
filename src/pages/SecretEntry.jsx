@@ -6,13 +6,16 @@ export default function SecretEntry() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const checkPassword = () => {
-    if (password.toLowerCase() === "vihaana") {
-      navigate("/home"); // ❤️ Goes to AlbumsHome
-    } else {
-      alert("Only my Vivek knows this secret 💕🔐");
-    }
-  };
+const checkPassword = () => {
+  if (password.toLowerCase() === "vihaana") {
+    sessionStorage.setItem("unlocked", "true");
+    navigate("/home");
+  } else {
+    alert("Only my Vivek knows this secret 💕🔐");
+  }
+};
+
+
 
   return (
     <div className="secret-page">

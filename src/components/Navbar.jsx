@@ -8,7 +8,7 @@ function Navbar() {
       <div className="navbar-logo">💖 Viv & Nandhu 💖</div>
 
       <ul className="navbar-links">
-        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/home">Home</NavLink></li>
         <li><NavLink to="/gifts">Love Letter</NavLink></li>
         <li><NavLink to="/memories">Memories</NavLink></li>
         <li><NavLink to="/treasure">Treasure Hunt</NavLink></li>

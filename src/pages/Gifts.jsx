@@ -34,7 +34,7 @@ function Gifts() {
 
         <button 
           className="back-btn"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/home")}
         >
           Back to Home 💖
           
